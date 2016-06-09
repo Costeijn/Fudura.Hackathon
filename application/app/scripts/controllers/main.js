@@ -10,15 +10,17 @@
 app
   .controller('MainCtrl', function ($scope, $interval, discoveryService) {
     $scope.NetwerkData;
-    $scope.Network;
+    $scope.Network
     var redraw = function (){
       if($scope.Network != null){
         $scope.Network.redraw();
       }
     }
     discoveryService.discovery(function(netwerkData) {
+      $scope.NetwerkData = netwerkData[0].data;
+      $scope.NetwerkData.errors = netwerkData[1].data;
 
-      $scope.NetwerkData = netwerkData.data;
+
 
       var nodes = null;
       var edges = null;
