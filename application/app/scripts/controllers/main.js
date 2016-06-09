@@ -9,8 +9,9 @@
  */
 app
   .controller('MainCtrl', function (discoveryService) {
-    console.log(discoveryService);
-    
+
+    discoveryService.discovery();
+
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
