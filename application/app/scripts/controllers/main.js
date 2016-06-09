@@ -8,11 +8,17 @@
  * Controller of the appApp
  */
 app
-  .controller('MainCtrl', function (discoveryService) {
-
+  .controller('MainCtrl', function ($scope, $interval, discoveryService) {
+    $scope.NetwerkData;
+    $scope.Network;
+    var redraw = function (){
+      if($scope.Network != null){
+        $scope.Network.redraw();
+      }
+    }
     discoveryService.discovery(function(netwerkData) {
 
-      netwerkData = netwerkData.data;
+      $scope.NetwerkData = netwerkData.data;
 
       var nodes = null;
       var edges = null;
@@ -72,11 +78,11 @@ app
         }
       };
 
-      var segments = netwerkData.segments;
+      var segments = $scope.NetwerkData.segments;
 
-      var meters = netwerkData.meters;
+      var meters = $scope.NetwerkData.meters;
 
-      var errors = netwerkData.errors;
+      //var errors = $scope.NetwerkData.errors;
 
       for (var i = 0; i < segments.length; i++) {
         if (segments[i].closed) {
@@ -106,8 +112,11 @@ app
         edges: edges
       };
       var options = {}
-
       network = new vis.Network(container, data, optionsFA);
-    });
+
+      $scope.Network = network;
+    }),
+
+    $interval(redraw, 5000);
 
   });
