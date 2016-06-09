@@ -7,8 +7,10 @@
  * # MainCtrl
  * Controller of the appApp
  */
-angular.module('appApp')
-  .controller('MainCtrl', function () {
+app
+  .controller('MainCtrl', function (discoveryService) {
+    console.log(discoveryService);
+    
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

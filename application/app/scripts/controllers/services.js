@@ -1,0 +1,7 @@
+
+
+app.service('discoveryService', function () {
+
+
+
+  });
