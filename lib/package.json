@@ -1,0 +1,12 @@
+{
+  "name": "fudura-blockchain-poc",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "q": "^1.4.1",
+    "solc": "^0.3.4",
+    "web3": "^0.17.0-alpha"
+  },
+  "devDependencies": {},
+  "author": "Mark van Cuijk <Mark.vanCuijk@infosupport.com>"
+}
