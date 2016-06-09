@@ -1,2 +1,17 @@
+<div ng-controller="MainCtrl">
 <h1>Netwerk</h1>
-<div id="mynetwork" ng-controller="MainCtrl"></div>
+<div id="mynetwork"></div>
+  <br>
+  <div class="table-responsive">
+<table class="table table-striped table-hover">
+  <tr>
+    <th>Naam segment</th>
+    <th>Stand</th>
+  </tr>
+  <tr ng-repeat="segment in NetwerkData.segments">
+    <td>{{segment.name}}</td>
+    <td>{{ segment.value }}</td>
+  </tr>
+</table>
+</div>
+</div>
