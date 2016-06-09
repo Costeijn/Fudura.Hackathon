@@ -82,7 +82,7 @@ app
 
       var meters = $scope.NetwerkData.meters;
 
-      //var errors = $scope.NetwerkData.errors;
+      var errors = $scope.NetwerkData.errors;
 
       for (var i = 0; i < segments.length; i++) {
         if (segments[i].closed) {
@@ -98,11 +98,12 @@ app
         edges.push({from: meters[i].address, to: meters[i].outSegment, length: EDGE_LENGTH_MAIN});
         edges.push({from: meters[i].inSegment, to: meters[i].address, length: EDGE_LENGTH_MAIN});
       }
-
-      for (var i = 0; i < errors.length; i++) {
-        errors[i].id= i,
-        nodes.push({id: i, label: "Discrepantie", group: 'errors'});
-        edges.push({from:errors[i].id, to:errors[i].relatedSegment, length:EDGE_LENGTH_MAIN, color:"#FF0D0D"});
+      if(errors) {
+        for (var i = 0; i < errors.length; i++) {
+          errors[i].id = i,
+            nodes.push({id: i, label: "Discrepantie", group: 'errors'});
+          edges.push({from: errors[i].id, to: errors[i].relatedSegment, length: EDGE_LENGTH_MAIN, color: "#FF0D0D"});
+        }
       }
 
       // create a network
