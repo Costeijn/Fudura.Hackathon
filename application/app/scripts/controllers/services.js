@@ -2,20 +2,12 @@ app.service('addressBookService', function () {
   this.addresses = function () {
     return [
       {
-        name: 'Mark van Cuijk',
+        name: 'Stroomnetwerk #1',
         address: '0x3ce519f0018cdfb65161de13600185e126ee49b3'
       },
       {
-        name: 'Costeijn Kuhlmann zonder errors',
-        address: '0x170632d8b17a76e187bd19f0a46b77c8157f4b52'
-      },
-      {
-        name: 'Costeijn Kuhlmann met errors',
-        address: '0xbb0e8c8bf5c54335a9c38240dff8135231015463'
-      },
-      {
-        name: 'Tims Network',
-        address: '0x17a47ce516b0eb8fc0bf463d63b5e1778fbbffc2'
+        name: 'Stroomnetwerk #2',
+        address: '0x2cfa7845a9e6d7b7e93f0e36fb47430f032653ef'
       }
     ];
   }
