@@ -14,21 +14,21 @@ app
 
     var flashOn = false;
     $interval(function () {
-        flashOn = !flashOn;
+      flashOn = !flashOn;
 
-        var newGroup = flashOn ? 'errors' : 'closedsegments';
-        if ($scope.NetwerkData && $scope.NetwerkData.errors) {
-          var errors = $scope.NetwerkData.errors.map(function (error) {
-              return error.relatedSegment;
-          });
-          $scope.NetwerkData.segments.forEach(function (segment) {
-              if (errors.indexOf(segment.address) > -1) {
-                  $scope.VisData.nodes.update({ id: segment.address, group: newGroup });
-              } else {
-                  $scope.VisData.nodes.update({ id: segment.address, group: 'closedsegments' });
-              }
-          });
-        }
+      var newGroup = flashOn ? 'error' : 'closedsegment';
+      if ($scope.NetwerkData && $scope.NetwerkData.errors) {
+        var errors = $scope.NetwerkData.errors.map(function (error) {
+          return error.relatedSegment;
+        });
+        $scope.NetwerkData.segments.filter(function(segment){return segment.closed;}).forEach(function (segment) {
+          if (errors.indexOf(segment.address) > -1) {
+            $scope.VisData.nodes.update({ id: segment.address, group: newGroup });
+          } else {
+            $scope.VisData.nodes.update({ id: segment.address, group: 'closedsegment' });
+          }
+        });
+      }
     }, 1000);
 
     function retrieve(system) {
@@ -60,7 +60,7 @@ app
 
         var optionsFA = {
           groups: {
-            segments: {
+            house: {
               shape: 'icon',
               icon: {
                 face: 'FontAwesome',
@@ -69,16 +69,16 @@ app
                 color: '#DC73FF'
               }
             },
-            closedsegments: {
+            closedsegment: {
               shape: 'icon',
               icon: {
                 face: 'FontAwesome',
                 code: '\uf1b2',
                 size: 50,
                 color: '#FF9673'
-              },
+              }
             },
-            meters: {
+            meter: {
               shape: 'icon',
               icon: {
                 face: 'FontAwesome',
@@ -88,13 +88,33 @@ app
 
               }
             },
-            errors: {
+            error: {
               shape: 'icon',
               icon: {
                 face: 'FontAwesome',
                 code: '\uf071',
                 size: 50,
                 color: '#FF0D0D'
+
+              }
+            },
+            opwek: {
+              shape: 'icon',
+              icon: {
+                face: 'FontAwesome',
+                code: '\uf0e7',
+                size: 50,
+                color: '#F7FF57'
+
+              }
+            },
+            opslag: {
+              shape: 'icon',
+              icon: {
+                face: 'FontAwesome',
+                code: '\uf241',
+                size: 40,
+                color: '#393BA3'
 
               }
             }
@@ -108,16 +128,25 @@ app
         var errors = $scope.NetwerkData.errors;
 
         for (var i = 0; i < segments.length; i++) {
+          console.log(segments);
           if (segments[i].closed) {
-            nodes.push({id: segments[i].address, label: segments[i].name, group: 'closedsegments'})
+            nodes.push({id: segments[i].address, label: segments[i].name, group: 'closedsegment'})
           }
           else {
-            nodes.push({id: segments[i].address, label: segments[i].name, group: 'segments'})
+            if(segments[i].name.contains('opwek')){
+              nodes.push({id: segments[i].address, label: segments[i].name, group: 'opwek'})
+            }
+            else if(segments[i].name.contains('opslag')){
+              nodes.push({id: segments[i].address, label: segments[i].name, group: 'opslag'})
+            }
+            else{
+              nodes.push({id: segments[i].address, label: segments[i].name, group: 'house'})
+            }
           }
         }
 
         for (var i = 0; i < meters.length; i++) {
-          nodes.push({id: meters[i].address, label: meters[i].name, group: 'meters'});
+          nodes.push({id: meters[i].address, label: meters[i].name, group: 'meter'});
           edges.push({from: meters[i].address, to: meters[i].outSegment, length: EDGE_LENGTH_MAIN});
           edges.push({from: meters[i].inSegment, to: meters[i].address, length: EDGE_LENGTH_MAIN});
         }
@@ -156,3 +185,5 @@ app
     }
 
   });
+
+
