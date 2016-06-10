@@ -21,7 +21,7 @@ app
         var errors = $scope.NetwerkData.errors.map(function (error) {
           return error.relatedSegment;
         });
-        $scope.NetwerkData.segments.forEach(function (segment) {
+        $scope.NetwerkData.segments.filter(function(segment){return segment.closed;}).forEach(function (segment) {
           if (errors.indexOf(segment.address) > -1) {
             $scope.VisData.nodes.update({ id: segment.address, group: newGroup });
           } else {
@@ -128,6 +128,7 @@ app
         var errors = $scope.NetwerkData.errors;
 
         for (var i = 0; i < segments.length; i++) {
+          console.log(segments);
           if (segments[i].closed) {
             nodes.push({id: segments[i].address, label: segments[i].name, group: 'closedsegment'})
           }
