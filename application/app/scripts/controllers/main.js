@@ -38,8 +38,7 @@ app
       }
 
       discoveryService.discovery(system.address, function(netwerkData) {
-        $scope.NetwerkData = netwerkData[0].data;
-        $scope.NetwerkData.errors = netwerkData[1].data;
+        $scope.NetwerkData = netwerkData.data;
 
 
 
