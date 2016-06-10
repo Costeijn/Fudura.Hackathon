@@ -161,7 +161,7 @@ app
         $scope.VisData = data;
         $scope.Network = network;
 
-        redrawInterval = $interval(redraw, 5000);
+        redrawInterval = $interval(redraw, 1000);
 
       });
     }
