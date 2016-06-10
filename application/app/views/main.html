@@ -1,4 +1,7 @@
 <div ng-controller="MainCtrl">
+<div style="float: right">
+  <select ng-model="system" ng-options="address as address.name for address in addresses track by address.address" />
+</div>
 <h1>Netwerk</h1>
 <div id="mynetwork"></div>
   <br>
