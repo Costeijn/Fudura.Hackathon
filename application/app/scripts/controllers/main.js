@@ -57,6 +57,15 @@ app
               color: '#FF9673'
             },
           },
+          closedsegmentsE: {
+            shape: 'icon',
+            icon: {
+              face: 'FontAwesome',
+              code: '\uf1b2',
+              size: 50,
+              color: '#FF0D0D'
+            },
+          },
           meters: {
             shape: 'icon',
             icon: {
@@ -111,13 +120,24 @@ app
       // create a network
       var container = document.getElementById('mynetwork');
       var data = {
-        nodes: nodes,
-        edges: edges
+        nodes: new vis.DataSet(nodes),
+        edges: new vis.DataSet(edges)
       };
       var options = {}
       network = new vis.Network(container, data, optionsFA);
 
       $scope.Network = network;
+
+      var flashOn = false;
+      $interval(function () {
+          flashOn = !flashOn;
+
+          var newGroup = flashOn ? 'closedsegmentsE' : 'closedsegments';
+          $scope.NetwerkData.errors.forEach(function (error) {
+              data.nodes.update({ id: error.relatedSegment, group: newGroup });
+          });
+      }, 1000);
+
     }),
 
     $interval(redraw, 5000);
