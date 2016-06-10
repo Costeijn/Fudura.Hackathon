@@ -132,10 +132,10 @@ app
             nodes.push({id: segments[i].address, label: segments[i].name, group: 'closedsegment'})
           }
           else {
-            if(segments[i].name.contains('opwek')){
+            if(segments[i].name.indexOf('opwek') > -1){
               nodes.push({id: segments[i].address, label: segments[i].name, group: 'opwek'})
             }
-            else if(segments[i].name.contains('opslag')){
+            else if(segments[i].name.indexOf('opslag') > -1){
               nodes.push({id: segments[i].address, label: segments[i].name, group: 'opslag'})
             }
             else{
@@ -184,5 +184,3 @@ app
     }
 
   });
-
-
