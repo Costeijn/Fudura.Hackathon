@@ -127,7 +127,6 @@ app
         var errors = $scope.NetwerkData.errors;
 
         for (var i = 0; i < segments.length; i++) {
-          console.log(segments);
           if (segments[i].closed) {
             nodes.push({id: segments[i].address, label: segments[i].name, group: 'closedsegment'})
           }
@@ -176,8 +175,7 @@ app
     var redraw = function (){
       if($scope.Network != null){
         discoveryService.discovery($scope.system.address, function(netwerkData) {
-          $scope.NetwerkData = netwerkData[0].data;
-          $scope.NetwerkData.errors = netwerkData[1].data;
+          $scope.NetwerkData = netwerkData.data;
         });
         $scope.Network.redraw();
       }
