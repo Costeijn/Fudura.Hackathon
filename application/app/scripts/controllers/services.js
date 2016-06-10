@@ -6,8 +6,12 @@ app.service('addressBookService', function () {
         address: '0x3ce519f0018cdfb65161de13600185e126ee49b3'
       },
       {
-        name: 'Other network',
-        address: 'grmbl'
+        name: 'Costeijn Kuhlmann zonder errors',
+        address: '0x170632d8b17a76e187bd19f0a46b77c8157f4b52'
+      },
+      {
+        name: 'Costeijn Kuhlmann met errors',
+        address: '0xbb0e8c8bf5c54335a9c38240dff8135231015463'
       }
     ];
   }
