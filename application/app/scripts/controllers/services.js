@@ -12,6 +12,10 @@ app.service('addressBookService', function () {
       {
         name: 'Costeijn Kuhlmann met errors',
         address: '0xbb0e8c8bf5c54335a9c38240dff8135231015463'
+      },
+      {
+        name: 'Tims Network',
+        address: '0x17a47ce516b0eb8fc0bf463d63b5e1778fbbffc2'
       }
     ];
   }
