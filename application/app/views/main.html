@@ -8,7 +8,7 @@
     <th>Naam segment</th>
     <th>Stand</th>
   </tr>
-  <tr ng-repeat="segment in NetwerkData.segments">
+  <tr ng-repeat="segment in NetwerkData.segments | orderBy:'name'">
     <td>{{segment.name}}</td>
     <td>{{ segment.value }}</td>
   </tr>
