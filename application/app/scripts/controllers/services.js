@@ -16,12 +16,10 @@ app.service('addressBookService', function () {
 app.service('discoveryService', function ($http, $q) {
 
   this.discovery = function (system, callback) {
-    console.log("discovery");
     $q.all([
       $http.get('http://localhost:8081/discovery/' + encodeURIComponent(system)),
       $http.get('http://localhost:8081/errors/' + encodeURIComponent(system))
     ]).then(function (results) {
-      console.log("test"+results);
       callback(results);
     });
   }
