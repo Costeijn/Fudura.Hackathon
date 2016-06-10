@@ -104,7 +104,7 @@ app
                 face: 'FontAwesome',
                 code: '\uf0e7',
                 size: 50,
-                color: '#F7FF57'
+                color: '#92F266'
 
               }
             },
@@ -114,7 +114,7 @@ app
                 face: 'FontAwesome',
                 code: '\uf241',
                 size: 40,
-                color: '#393BA3'
+                color: '#6264DE'
 
               }
             }
